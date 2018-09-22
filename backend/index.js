@@ -1,7 +1,14 @@
+//import hello from "./tools.js"
+var tools = require('./tools.js')
+
 var express = require('express');
 var app = express();
 var session = require('express-session');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('/home/leon/MagicMeal/magic-meals/backend/food_db');
 const port = 3000;
+
+
 
 let meals = {
     "stir_fry": {
@@ -35,6 +42,12 @@ app.get('/', (req, res) => {
     res.send(req.session.views + " visits from your sexy ass");
 })
 
+
+app.get('/hello', (req, res) => {
+
+    res.send(tools.hello());
+})
+
 app.get('/api/meal/:name', (req, res) => {
     const mealName = req.params.name;
     //res.send(req.params.name);
@@ -45,6 +58,38 @@ app.get('/api/meal/:name', (req, res) => {
     })
 
 })
+
+app.get('/index', (req, res) => {
+    res.render('./index.html')
+})
+
+app.get('/init_db', (req, res) => {
+
+    // db.run (`CREATE DATABASE food_db`);
+    let createFoodT = `CREATE TABLE food(foodID INTEGER PRIMARY KEY,
+                                                itemName TEXT NOT NULL,
+                                                genName TEXT,
+                                                unit TEXT NOT NULL,
+                                                amount INTEGER NOT NULL,
+                                                price INTEGER NOT NULL,
+                                                allergy TEXT NOT NULL)`;
+
+    let createMealT = `CREATE TABLE meal(mealID INTEGER PRIMARY KEY,
+                                                mealName TEXT NOT NULL)`;
+
+    let createIngrT = `CREATE TABLE ingredient(mealID INTEGER NOT NULL,
+                                                foodID INTEGER NOT NULL,
+                                                quantity INTEGER NOT NULL)`;
+
+
+
+    db.run(createFoodT);
+    db.run(createMealT);
+    db.run(createIngrT);
+    res.send("done");
+
+})
+
 
 /*
 app.post('/api/list/', (req, res) => {
