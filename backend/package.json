@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moop204/magic-meals.git"
+  },
+  "author": "Andrew Taylors Fan Club",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moop204/magic-meals/issues"
+  },
+  "homepage": "https://github.com/Moop204/magic-meals#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
