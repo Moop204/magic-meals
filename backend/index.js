@@ -8,6 +8,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('/home/leon/MagicMeal/magic-meals/backend/food_db');
 const port = 3000;
 
+app.use(express.static(__dirname + '/static'));
 
 
 let meals = {
@@ -45,7 +46,7 @@ app.get('/', (req, res) => {
 
 app.get('/hello', (req, res) => {
 
-    res.send(tools.hello());
+    res.send(__dirname);
 })
 
 app.get('/api/meal/:name', (req, res) => {
@@ -59,8 +60,10 @@ app.get('/api/meal/:name', (req, res) => {
 
 })
 
+
+
 app.get('/index', (req, res) => {
-    res.render('./index.html')
+    res.sendFile('./index.html')
 })
 
 app.get('/init_db', (req, res) => {
