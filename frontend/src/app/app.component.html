@@ -78,9 +78,9 @@
             </div> 
             <div class="col-md-4">
                 <div class="input-group stylish-input-group">
-                    <input class="form-control" placeholder="Search" type="text">
+                    <input class="form-control" placeholder="Search" type="text" #newMeal>
                     <span class="input-group-btn">
-                        <button class="btn btn-default">Search</button>
+                        <button class="btn btn-default" (click)="addMeal(newMeal.v)">Search</button>
                     </span>
                 </div>
             </div>
@@ -98,13 +98,13 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>Pasta</td>
+                        <td>Bolognese Pasta</td>
                         <td><button class="btn btn-danger">Delete</button></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Some other meal</td>
-                        <td><button class="btn btn-danger">Delete</button></td>
+                        <td>Fried Rice</td>
+                        <td><button class="btn btn-danger" (click)="addRandomMeal();">Delete</button></td>
                     </tr>
                 </table>
                 <!--<img src="https://www.recipetineats.com/wp-content/uploads/2017/05/Bacon-Tomato-Pasta-3.jpg" class="img-responsive">-->
@@ -122,9 +122,14 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <td>aaaaaaaaaaaaaaaa</td>
+                        <td>Stir Fry</td>
                         <td><button class="btn btn-success">Add</button></td>
                     </tr>
+                    <tr>
+                        <td>Fried Chicken</td>
+                        <td><button class="btn btn-success">Add</button></td>
+                    </tr>
+                    <!--<app-meal-item *ngFor="let meal of meals" [meal]="meal.name"></app-meal-item>-->
                 </table>
             </div>
             <div class="col-md-4"></div>

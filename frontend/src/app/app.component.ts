@@ -7,13 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'Meal Plan Generator';
-    public meals: Array<object> = [];
-    addMeals(newMeal: string) {
-        this.meals.push(
-            {
-                "mealName": newMeal
-            }
-        );
-    }
+    public meals: Array<object> = [
+        {
+            "name": "Bolognese spaghetti"
+        },
+        {
+            "name": "Milk"
+        },
+        {
+            "name": "Stir Fry"
+        }
+    ];
     
 }
