@@ -1,11 +1,11 @@
 //import hello from "./tools.js"
-var tools = require('./tools.js')
-
+var tools = require('./tools.js');
+var database = require('./database.js');
 var express = require('express');
 var app = express();
 var session = require('express-session');
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('/home/leon/MagicMeal/magic-meals/backend/food_db');
+var db = new sqlite3.Database('./food_db');
 const port = 3000;
 
 app.use(express.static(__dirname + '/static'));
@@ -60,36 +60,21 @@ app.get('/api/meal/:name', (req, res) => {
 
 })
 
-
-
-app.get('/index', (req, res) => {
-    res.sendFile('./index.html')
-})
-
+// seller, itemName, genName, unit, amount, price, allergy
 app.get('/init_db', (req, res) => {
 
-    // db.run (`CREATE DATABASE food_db`);
-    let createFoodT = `CREATE TABLE food(foodID INTEGER PRIMARY KEY,
-                                                itemName TEXT NOT NULL,
-                                                genName TEXT,
-                                                unit TEXT NOT NULL,
-                                                amount INTEGER NOT NULL,
-                                                price INTEGER NOT NULL,
-                                                allergy TEXT NOT NULL)`;
-
-    let createMealT = `CREATE TABLE meal(mealID INTEGER PRIMARY KEY,
-                                                mealName TEXT NOT NULL)`;
-
-    let createIngrT = `CREATE TABLE ingredient(mealID INTEGER NOT NULL,
-                                                foodID INTEGER NOT NULL,
-                                                quantity INTEGER NOT NULL)`;
-
-
-
-    db.run(createFoodT);
-    db.run(createMealT);
-    db.run(createIngrT);
-    res.send("done");
+    console.log(database.init_db());
+    // console.log(database.importFood("Coles", "Coles_Aussie_Beef_Sausages_680g", "sausages", "g", 680, 5, "_"));
+    // console.log(database.importFood("Woolworths", "Woolworths_Aussie_Beef_Sausages_680g", "sausages", "g", 680, 4, "_"));
+    // console.log(database.importFood("Coles", "Coles_Aussie_Beef_Sausages_340g", "sausages", "g", 340, 5, "_"));
+    // console.log(database.importFood("Woolworths", "Woolworths_Aussie_Beef_Sausages_340g", "sausages", "g", 340, 5, "_"));
+    // console.log(database.importFood("Coles", "Coles_Aussie_Beef_Sausages_1000g", "sausages", "g", 1000, 10, "_"));
+    // console.log(database.importFood("Woolworths", "Woolworths_Aussie_Beef_Sausages_1000g", "sausages", "g", 1000, 10, "_"));
+    // console.log(database.importFood("Leon", "Leons_Aussie_Human_Sausages_1000g", "sausages", "g", 1000, 5, "vegan"));
+    console.log(database.importMeal("Spaghetti Bolognese"));
+    console.log(database.importMeal("Spaghetti Bolognese2"));
+    console.log(database.importMeal("Spaghetti Bolognese3"));
+    // res.send("done");
 
 })
 
