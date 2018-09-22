@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Moop204/magic-meals#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "sqlite3": "^4.0.2"
   }
 }
